@@ -29,6 +29,8 @@ const conditions = (aiChoice, humanChoice) =>{
         board.rounds += 1;
         board.resultMessage = 'Human Wins!';
         human.playerPoints += 1;
+        $('.board .playerChoice, .resultTable .playerPoints').toggleClass('win');
+
 
     } 
     // Draw conditions
@@ -38,12 +40,14 @@ const conditions = (aiChoice, humanChoice) =>{
         board.rounds += 1;
         board.resultMessage = 'Draw!';
         board.draws += 1;
+        $('.board .message, .resultTable .draws').toggleClass('draw');
     
     // Ai win conditions are collect in else statement 
     } else{
         board.rounds += 1;
         board.resultMessage = 'Ai Wins!';
         ai.playerPoints += 1;
+        $('.board .aiChoice, .resultTable .aiPoints').toggleClass('win');
     }
 
 }
@@ -70,6 +74,12 @@ const resetGame = () =>{
     ai.playerPoints = 0;
 
 }
+// Function removing colors before new round
+const removeColors = () =>{
+    $('.board .playerChoice, .resultTable .playerPoints').removeClass('win');
+    $('.board .message, .resultTable .draws').removeClass('draw');
+    $('.board .aiChoice, .resultTable .aiPoints').removeClass('win');
+}
 
 // Create instances of board, human player and Ai player from 
 // Game object and Player object
@@ -80,6 +90,7 @@ const ai = new Player;
 
 //Getting which button was chosen by player and start all game features
 $('button').on('click', function(){
+    removeColors();
     if($(this).attr('class') === 'reset'){
             resetGame();
     }else{

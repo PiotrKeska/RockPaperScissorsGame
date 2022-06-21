@@ -61,10 +61,22 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-
 .board h1{
     width: 100%;
     text-align: center;
+}
+
+.board .playerChoice.win,
+.resultTable .playerPoints.win{
+    background-color: lightgreen;
+}
+.board .aiChoice.win,
+.resultTable .aiPoints.win{
+    background-color: lightcoral;
+}
+.board .message.draw,
+.resultTable .draws.draw{
+    background-color: yellow;
 }
 
 .resultTable{
@@ -81,6 +93,7 @@ body{
     width: 50%;
     text-align: center;
 }
+
 
 /* Media for mobile devices and with orientation landscape */
 @media (orientation: landscape){
