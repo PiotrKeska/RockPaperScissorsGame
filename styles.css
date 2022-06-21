@@ -27,9 +27,6 @@ body{
     justify-content: space-around;
 }
 
-.tittle{
-    /* background-color: lightgray; */
-}
 .tittle h1{
     font-size: 3em;
 }
@@ -85,4 +82,41 @@ body{
     text-align: center;
 }
 
+/* Media for mobile devices and with orientation landscape */
+@media (orientation: landscape){
+    .buttons button{
+        width: 20%;
+        height: 70%;
+        border: 1px solid black;
+        border-radius: 3px;
+        background-color: lightblue;
+        font-size: 2.5em;
+        font-weight: bold;
+        transition: .3s;
+}
+}
 
+
+/* Media for resolution width higher than 1000px */
+@media (min-width: 1000px){
+    .tittle h1{
+        font-size: 5em;
+    }
+
+    .buttons button{
+        border: 2px solid black;
+        font-size: 4em;
+    }
+
+    .board{
+        width: 100%;
+        height: 16%;
+    }
+    .board h1{
+        font-size: 3.5em;
+    }
+
+    .resultTable h1{
+        font-size: 3.5em;
+    }
+}
