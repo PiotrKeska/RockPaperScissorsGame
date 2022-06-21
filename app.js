@@ -46,12 +46,28 @@ const conditions = (aiChoice, humanChoice) =>{
         ai.playerPoints += 1;
     }
 
-    // Update UI by jQ
-    $('.round').text(`Rounds: ${board.rounds}`);
-    $('.draws').text(`Draws: ${board.draws}`);
-    $('.message').text(`${board.resultMessage}`);
-    $('.playerPoints').text(`Player points: ${human.playerPoints}`);
-    $('.aiPoints').text(`Ai points: ${ai.playerPoints}`);
+}
+// Function handling UI 
+const uiHandler = () =>{
+        // Update UI by jQ
+        $('.round').text(`Rounds: ${board.rounds}`);
+        $('.draws').text(`Draws: ${board.draws}`);
+        $('.message').text(`${board.resultMessage}`);
+        $('.playerPoints').text(`Player points: ${human.playerPoints}`);
+        $('.aiPoints').text(`Ai points: ${ai.playerPoints}`);
+        $('.playerChoice').text(`Human choice: ${human.playerChoice}`);
+        $('.aiChoice').text(`Ai choice: ${ai.playerChoice}`);
+
+}
+// Function resetarting game
+const resetGame = () =>{
+    board.rounds = 0;
+    board.draws = 0;
+    board.resultMessage = '';
+    human.playerChoice = '';
+    human.playerPoints = 0;
+    ai.playerChoice = '';
+    ai.playerPoints = 0;
 
 }
 
@@ -64,11 +80,14 @@ const ai = new Player;
 
 //Getting which button was chosen by player and start all game features
 $('button').on('click', function(){
-    ai.choiceDraw();
-    human.playerChoice = $(this).attr('class');
-    conditions(ai.playerChoice, human.playerChoice);
-    $('.playerChoice').text(`Human choice: ${human.playerChoice}`);
-    $('.aiChoice').text(`Ai choice: ${ai.playerChoice}`);
+    if($(this).attr('class') === 'reset'){
+            resetGame();
+    }else{
+            ai.choiceDraw();
+            human.playerChoice = $(this).attr('class');
+            conditions(ai.playerChoice, human.playerChoice);
+    }
+    uiHandler();
 })
 
 
